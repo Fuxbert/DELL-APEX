@@ -1,0 +1,34 @@
+#!/bin/bash
+
+apt-get update
+apt install vlan
+apt install jq -y
+
+cat << EOF > /etc/modules-load.d/networking.conf
+8021q
+EOF
+
+cat << EOF >> /etc/network/interfaces
+
+auto bond0.${PRIM_VLAN_ID}
+iface bond0.${PRIM_VLAN_ID} inet static
+pre-up sleep 5
+    address ${PRIM_ADDRESS_METAL}
+    netmask ${SUBNETMASK}
+    gateway ${PRIM_ADDRESS_APEX}
+    vlan-raw-device bond0
+
+auto bond0.${SEC_VLAN_ID}
+iface bond0.${SEC_VLAN_ID} inet static
+pre-up sleep 5
+    address ${SEC_ADDRESS_METAL}
+    netmask ${SUBNETMASK}
+    gateway ${SEC_ADDRESS_APEX}
+    vlan-raw-device bond0
+
+EOF
+
+ifup bond0.${PRIM_VLAN_ID}
+ifup bond0.${SEC_VLAN_ID}
+
+systemctl restart networking
