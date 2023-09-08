@@ -15,11 +15,11 @@ variable "metal_auth_token" {
 variable "metal" {
   description = "Metal details"
   default = {
-    metro = "PA"
+    metro = var.metal.metro
     node = {
-      sku = "c3.small.x86"
-      os = "ubuntu_20_04"
-      term = "hourly"
+      sku = var.metal.node.sku
+      os = var.metal.node.os
+      term = var.metal.node.term
       }
     project_id = "YOUR_PROJECT_ID"
     service_token = {
@@ -39,20 +39,20 @@ variable "vlan_id" {
   }
 
 variable "apex_zside_token" {
-  description   = "Primary Z-Side Token for Fabric VC, VLAN 3976"
-  default       = {
-    prim        = "token_a"
-    sec         = "token_b"
+  description = "Primary Z-Side Token for Fabric VC, VLAN 3976"
+  default = {
+    prim = "token_a"
+    sec = "token_b"
     }
   }
 
 variable "ip_address" {
-  description   = "P2P IP addresses"
-  default       = {
-    metal_prim  = "metal_p2p_a"
-    metal_sec   = "metal_p2p_b"
-    apex_prim   = "dell_p2p_a"
-    apex_sec    = "dell_p2p_b"
+  description = "P2P IP addresses"
+  default = {
+    metal_prim = "metal_p2p_a"
+    metal_sec = "metal_p2p_b"
+    apex_prim = "dell_p2p_a"
+    apex_sec = "dell_p2p_b"
     }
   }
 variable "subnetmask" {
