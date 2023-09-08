@@ -9,7 +9,7 @@
 
 data "template_file" "userdata" {
   template = file("${path.module}/userdata.tftpl")
-  vars  = 
+  vars  = {
     PRIM_ADDRESS_METAL = var.ip_address.metal_prim
     SEC_ADDRESS_METAL  = var.ip_address.metal_sec
     PRIM_ADDRESS_APEX  = var.ip_address.apex_prim
