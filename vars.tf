@@ -17,9 +17,9 @@ variable "metal" {
   default = {
     metro = "location"
     node = {
-      sku = var.metal.node.sku
-      os = var.metal.node.os
-      term = var.metal.node.term
+      sku = "c3.small.x86"
+      os = "ubuntu_20_04"
+      term = "hourly"
       }
     project_id = "YOUR_PROJECT_ID"
     service_token = {
