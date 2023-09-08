@@ -13,7 +13,7 @@ resource "equinix_fabric_connection" "metal-apex-vc-redundant" {
   depends_on    = [equinix_metal_connection.metal_token_pa]
 
   count         = length(local.redundancy)
-  name          = "metal-apex-${lower(var.metro)}-${element(local.redundancy, count.index)}"
+  name          = "metal-apex-${lower(var.metal.metro)}-${element(local.redundancy, count.index)}"
   bandwidth     = var.bandwidth
   type          = "EVPL_VC"
   a_side {
