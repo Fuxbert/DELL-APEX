@@ -15,7 +15,7 @@ variable "metal_auth_token" {
 variable "metal" {
   description = "Metal details"
   default = {
-    metro = var.metal.metro
+    metro = "location"
     node = {
       sku = var.metal.node.sku
       os = var.metal.node.os
