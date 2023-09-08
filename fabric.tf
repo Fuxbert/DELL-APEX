@@ -30,7 +30,7 @@ resource "equinix_fabric_connection" "metal-apex-vc-redundant" {
   }
   notifications {
     type        = "ALL"
-    emails      = [var.email_user]
+    emails      = var.email_user
   }
 }
 
