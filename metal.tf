@@ -59,6 +59,10 @@ resource "equinix_metal_device" "metal_apex" {
   operating_system = var.metal.node.os
   billing_cycle    = var.metal.node.term
   project_id       = var.metal.project_id
+  ip_address {
+    type = "private_ipv4"
+    cidr = 30
+  }
   user_data        = data.template_file.userdata.rendered
 }
 
